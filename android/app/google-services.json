@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "754971532862",
+    "project_id": "abrac-da433",
+    "storage_bucket": "abrac-da433.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754971532862:android:1a643d1111ba22bec4bb6f",
+        "android_client_info": {
+          "package_name": "com.example.abrac_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3STi00z40HBjsvWqGosCSETlI582wNbM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

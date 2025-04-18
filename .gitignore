@@ -1,0 +1,55 @@
+# Flutter/Dart
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.melos/
+.pub-cache/
+.pub/
+build/
+generated_plugin_registrant.dart
+
+# Android
+android/.gradle/
+android/captures/
+android/.idea/
+android/local.properties
+android/app/debug/
+android/app/release/
+
+# iOS/macOS
+ios/Flutter/Flutter.podspec
+ios/Pods/
+ios/.symlinks/
+ios/.flutter-plugins
+ios/.flutter-plugins-dependencies
+ios/.generated/
+ios/Runner.xcworkspace/
+macos/Pods/
+macos/.symlinks/
+macos/.flutter-plugins
+macos/.flutter-plugins-dependencies
+macos/.generated/
+macos/Runner.xcworkspace/
+*.xcuserstate
+*.xcworkspace
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+
+# Web
+web/.dart_tool/
+web/.idea/
+
+# VS Code
+.vscode/
+.idea/
+
+# Others
+*.log
+*.tmp
+*.swp
+.DS_Store
+.env
+*.iml
+*.ipr
+*.iws
