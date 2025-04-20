@@ -1,55 +1,72 @@
-# Flutter/Dart
-.dart_tool/
-.packages
-.flutter-plugins
-.flutter-plugins-dependencies
-.melos/
-.pub-cache/
-.pub/
-build/
+# === FLUTTER ===
+frontend/.dart_tool/
+frontend/.flutter-plugins
+frontend/.flutter-plugins-dependencies
+frontend/.packages
+frontend/.pub-cache/
+frontend/pub/
+frontend/build/
 generated_plugin_registrant.dart
 
-# Android
-android/.gradle/
-android/captures/
-android/.idea/
-android/local.properties
-android/app/debug/
-android/app/release/
+# === ANDROID ===
+frontend/android/.gradle/
+frontend/android/captures/
+frontend/android/.idea/
+frontend/android/local.properties
+frontend/android/app/debug/
+frontend/android/app/release/
 
-# iOS/macOS
-ios/Flutter/Flutter.podspec
-ios/Pods/
-ios/.symlinks/
-ios/.flutter-plugins
-ios/.flutter-plugins-dependencies
-ios/.generated/
-ios/Runner.xcworkspace/
-macos/Pods/
-macos/.symlinks/
-macos/.flutter-plugins
-macos/.flutter-plugins-dependencies
-macos/.generated/
-macos/Runner.xcworkspace/
-*.xcuserstate
-*.xcworkspace
-*.xcodeproj/project.xcworkspace/
-*.xcodeproj/xcuserdata/
+# === iOS/macOS ===
+frontend/ios/Flutter/Flutter.podspec
+frontend/ios/Pods/
+frontend/ios/.symlinks/
+frontend/ios/.flutter-plugins
+frontend/ios/.flutter-plugins-dependencies
+frontend/ios/.generated/
+frontend/ios/Runner.xcworkspace/
+frontend/macos/Pods/
+frontend/macos/.symlinks/
+frontend/macos/.flutter-plugins
+frontend/macos/.flutter-plugins-dependencies
+frontend/ios/Flutter/flutter_export_environment.sh
+frontend/ios/Flutter/Flutter.framework/
 
-# Web
-web/.dart_tool/
-web/.idea/
+# === LINUX ===
+frontend/linux/flutter/ephemeral/
 
-# VS Code
-.vscode/
-.idea/
+# === WINDOWS ===
+frontend/windows/flutter/ephemeral/
+frontend/windows/runner/resources/app_icon.ico
 
-# Others
-*.log
-*.tmp
-*.swp
-.DS_Store
+# === WEB ===
+frontend/web/generated_plugin_registrant.dart
+
+# === PYTHON ===
+__pycache__/
+*.py[cod]
+*.egg-info/
 .env
-*.iml
-*.ipr
-*.iws
+.venv/
+venv/
+*.sqlite3
+*.log
+
+# === FIREBASE ===
+.firebase/
+firebase-debug.log
+.firebaserc
+*.firestore*
+*.rules
+*.indexes.json
+
+# === VS CODE ===
+.vscode/
+
+# === SYSTEM FILES ===
+.DS_Store
+Thumbs.db
+
+# === EDITOR FILES ===
+.idea/
+*.sublime-workspace
+*.sublime-project
