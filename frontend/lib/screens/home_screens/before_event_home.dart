@@ -1,10 +1,38 @@
 import 'package:flutter/material.dart';
 
-class DuringEventHome extends StatelessWidget {
-  const DuringEventHome({super.key});
+class BeforeEventHome extends StatefulWidget {
+  const BeforeEventHome({super.key});
+
+  @override
+  State<BeforeEventHome> createState() => _BeforeEventHomeState();
+}
+
+class _BeforeEventHomeState extends State<BeforeEventHome> {
+  // Data do evento - defina aqui a data que você quer contar
+  final DateTime eventDate = DateTime(2025, 7, 18); 
+  
+  // Dias restantes
+  int _daysRemaining = 0;
+  
+  @override
+  void initState() {
+    super.initState();
+    _calculateDaysRemaining();
+  }
+  
+  void _calculateDaysRemaining() {
+    final now = DateTime.now();
+    final difference = eventDate.difference(now);
+    
+    setState(() {
+      _daysRemaining = difference.inDays >= 0 ? difference.inDays : 0;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    _calculateDaysRemaining();
+    
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     return Scaffold(
@@ -40,11 +68,15 @@ class DuringEventHome extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundColor: const Color.fromARGB(255, 148, 47, 47),
-                    child: CircleAvatar(
-                      radius: 20,
-                      backgroundColor: Colors.white,
-                      backgroundImage: AssetImage('assets/images/logo_abrac.png'),
+                    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                    child: Padding(
+                      padding: const EdgeInsets.all(0),
+                      child: Image.asset(
+                        'assets/images/logo_abrac.png',
+                        fit: BoxFit.cover,
+                        height: 100,
+                        width: 100,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 1),
@@ -69,48 +101,79 @@ class DuringEventHome extends StatelessWidget {
             Expanded(
               child: SafeArea(
                 top: false,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 236, 98, 95).withOpacity(0.7),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: TextButton.icon(
-                                onPressed: () {},
-                                icon: const Icon(Icons.photo_library, color: Colors.white),
-                                label: const Text(
-                                  'FOTOS/VÍDEOS',
-                                  style: TextStyle(color: Colors.white, fontSize: 12),
-                                ),
-                                style: TextButton.styleFrom(
-                                  padding: const EdgeInsets.symmetric(vertical: 12),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      // Barra de Fotos/Vídeos e Notícias
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 236, 98, 95)
+                                .withOpacity(0.7),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextButton.icon(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.photo_library,
+                                    color: Colors.white,
+                                    size: 24,
+                                  ),
+                                  label: const Text(
+                                    'FOTOS/VÍDEOS',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  style: TextButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              child: TextButton.icon(
-                                onPressed: () {},
-                                icon: const Icon(Icons.campaign, color: Colors.white),
-                                label: const Text(
-                                  'NOTÍCIAS',
-                                  style: TextStyle(color: Colors.white, fontSize: 12),
-                                ),
-                                style: TextButton.styleFrom(
-                                  padding: const EdgeInsets.symmetric(vertical: 12),
+                              Expanded(
+                                child: TextButton.icon(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.campaign,
+                                    color: Colors.white,
+                                    size: 26,
+                                  ),
+                                  label: const Text(
+                                    'NOTÍCIAS',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  style: TextButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                      
+                      // Contador regressivo
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        child: _buildCounter(),
+                      ),
+                      
+                      // Você pode adicionar mais widgets aqui para completar o conteúdo
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -135,12 +198,49 @@ class DuringEventHome extends StatelessWidget {
             children: [
               _buildNavIcon(Icons.home),
               _buildNavIcon(Icons.camera_alt),
-              _buildLogoIcon(), // Logo central com FittedBox
+              _buildLogoIcon(),
               _buildNavIcon(Icons.store),
               _buildNavIcon(Icons.person),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildCounter() {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: 350,
+      child: Stack(
+        children: [
+          // Imagem de fundo
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                'assets/images/counter_widget.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+
+          // Número (centralizado no topo)
+          Positioned(
+            top: 48,
+            left: 0,
+            right: 0,
+            child: Text(
+              _daysRemaining.toString(),
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Color.from(alpha: 1, red: 1, green: 1, blue: 1),
+                fontSize: 100,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -179,7 +279,7 @@ class DuringEventHome extends StatelessWidget {
           ),
         ],
       ),
-      padding: const EdgeInsets.all(0), // Menor padding para imagem maior
+      padding: const EdgeInsets.all(0),
       child: FittedBox(
         fit: BoxFit.contain,
         child: Image.asset('assets/images/logo_abrac.png'),
@@ -187,4 +287,3 @@ class DuringEventHome extends StatelessWidget {
     );
   }
 }
-

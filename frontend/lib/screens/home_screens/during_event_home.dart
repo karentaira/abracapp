@@ -40,11 +40,15 @@ class DuringEventHome extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundColor: const Color.fromARGB(255, 148, 47, 47),
-                    child: CircleAvatar(
-                      radius: 20,
-                      backgroundColor: Colors.white,
-                      backgroundImage: AssetImage('assets/images/logo_abrac.png'),
+                    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                    child: Padding(
+                      padding: const EdgeInsets.all(0),
+                        child: Image.asset(
+                          'assets/images/logo_abrac.png',
+                          fit: BoxFit.cover,
+                          height: 100,
+                          width: 100,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 1),
@@ -72,12 +76,14 @@ class DuringEventHome extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      // Barra de Fotos/Vídeos e Notícias com tamanho aumentado
+                      // Barra de Fotos/Vídeos e Notícias
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 236, 98, 95).withOpacity(0.7),
+                            color: const Color.fromARGB(255, 236, 98, 95)
+                                .withOpacity(0.7),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Row(
@@ -86,20 +92,21 @@ class DuringEventHome extends StatelessWidget {
                                 child: TextButton.icon(
                                   onPressed: () {},
                                   icon: const Icon(
-                                    Icons.photo_library, 
+                                    Icons.photo_library,
                                     color: Colors.white,
                                     size: 24,
                                   ),
                                   label: const Text(
                                     'FOTOS/VÍDEOS',
                                     style: TextStyle(
-                                      color: Colors.white, 
+                                      color: Colors.white,
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   style: TextButton.styleFrom(
-                                    padding: const EdgeInsets.symmetric(vertical: 12),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
                                   ),
                                 ),
                               ),
@@ -107,20 +114,21 @@ class DuringEventHome extends StatelessWidget {
                                 child: TextButton.icon(
                                   onPressed: () {},
                                   icon: const Icon(
-                                    Icons.campaign, 
+                                    Icons.campaign,
                                     color: Colors.white,
                                     size: 26,
                                   ),
                                   label: const Text(
                                     'NOTÍCIAS',
                                     style: TextStyle(
-                                      color: Colors.white, 
+                                      color: Colors.white,
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   style: TextButton.styleFrom(
-                                    padding: const EdgeInsets.symmetric(vertical: 12),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
                                   ),
                                 ),
                               ),
@@ -128,12 +136,11 @@ class DuringEventHome extends StatelessWidget {
                           ),
                         ),
                       ),
-                      
+
                       // Widget de Transmissão ao Vivo
                       const SizedBox(height: 4),
                       GestureDetector(
                         onTap: () {
-                          // Adicione aqui a função para abrir a transmissão ao vivo
                           print('Abrindo transmissão ao vivo');
                         },
                         child: Container(
@@ -142,7 +149,7 @@ class DuringEventHome extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 8),
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [ 
+                              colors: [
                                 const Color.fromARGB(42, 102, 42, 42),
                                 const Color.fromARGB(96, 110, 30, 30),
                               ],
@@ -150,7 +157,8 @@ class DuringEventHome extends StatelessWidget {
                               end: Alignment.bottomCenter,
                             ),
                             border: Border.all(
-                              color: const Color.fromARGB(255, 255, 209, 209), 
+                              color:
+                                  const Color.fromARGB(255, 255, 209, 209),
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(30),
@@ -179,147 +187,18 @@ class DuringEventHome extends StatelessWidget {
                           ),
                         ),
                       ),
-                      
-                      // Widget Completo de Participante (baseado na imagem compartilhada)
+
+                      // Widget do cantor
                       const SizedBox(height: 15),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFCB9A8C),
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        child: Column(
-                          children: [
-                            // Indicador AO VIVO
-                            Container(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.2),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(24),
-                                  topRight: Radius.circular(24),
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 8,
-                                    height: 8,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.red,
-                                      shape: BoxShape.circle,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  const Text(
-                                    'AO VIVO',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            
-                            // Seção do Número
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 5),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'NÚMERO',
-                                    style: TextStyle(
-                                      color: Colors.black54,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    '615',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    'ADULTO A',
-                                    style: TextStyle(
-                                      color: Colors.black54,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            
-                            // Seção do Nome e Música
-                            Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.all(20),
-                              decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.1),
-                                borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(24),
-                                  bottomRight: Radius.circular(24),
-                                ),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      const Expanded(
-                                        child: Text(
-                                          'Karen Taira',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 32,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      CircleAvatar(
-                                        radius: 24,
-                                        backgroundColor: Colors.white,
-                                        child: Image.asset(
-                                          'assets/images/logo_abrac.png',
-                                          height: 30,
-                                          width: 30,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 16),
-                                  const Text(
-                                    'MÚSICA',
-                                    style: TextStyle(
-                                      color: Color(0xFFAAAAAA),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  const Text(
-                                    'KONO INORI - この祈り～ THE PRAYER ～',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                      _buildSingerWidgetWithBackground(
+                        context: context,
+                        number: '615',
+                        name: 'Gustavo Maekawa Harano',
+                        music:
+                            'KONO INORI - この祈り～ THE PRAYER ～',
+                        category: 'ADULTO A',
                       ),
-                      
-                      // Espaço adicional no final para evitar que o conteúdo fique atrás da bottomNavigationBar
+
                       const SizedBox(height: 20),
                     ],
                   ),
@@ -333,7 +212,8 @@ class DuringEventHome extends StatelessWidget {
       // ─── Bottom Navigation Bar ───
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(171, 148, 112, 89).withOpacity(0.8),
+          color:
+              const Color.fromARGB(171, 148, 112, 89).withOpacity(0.8),
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
@@ -347,7 +227,7 @@ class DuringEventHome extends StatelessWidget {
             children: [
               _buildNavIcon(Icons.home),
               _buildNavIcon(Icons.camera_alt),
-              _buildLogoIcon(), // Logo central com FittedBox
+              _buildLogoIcon(),
               _buildNavIcon(Icons.store),
               _buildNavIcon(Icons.person),
             ],
@@ -356,6 +236,116 @@ class DuringEventHome extends StatelessWidget {
       ),
     );
   }
+
+Widget _buildSingerWidgetWithBackground({
+  required BuildContext context,
+  required String number,
+  required String name,
+  required String music,
+  required String category,
+}) {
+  return Container(
+    width: MediaQuery.of(context).size.width * 0.9,
+    height: 350,
+    child: Stack(
+      children: [
+        // Imagem de fundo
+        Positioned.fill(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.asset(
+              'assets/images/widget.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+
+        // Número (centralizado no topo)
+        Positioned(
+          top: 48,
+          left: 0,
+          right: 0,
+          child: Text(
+            number,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 90,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+
+        // Categoria (logo abaixo do número)
+        Positioned(
+          top: 154,
+          left: 0,
+          right: 0,
+          child: Text(
+            category,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white70,
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+
+        // Nome (em cima, do lado esquerdo)
+        Positioned(
+          bottom: 115,
+          left: 35,
+          right: 60,
+          child: Text(
+            name,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+
+// Música (centralizado horizontalmente)
+        Positioned(
+          bottom: 43,
+          left: 0,
+          right: 0,
+          child: Text(
+            music,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+
+
+        // Regional (lado direito inferior) - de acordo com a regional do cantor
+        Positioned(
+          bottom: 107,
+          right: 35,
+          child: CircleAvatar(
+            radius: 22,
+            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+            child: Padding(
+              padding: const EdgeInsets.all(0), // Remove o padding interno
+                child: Image.asset(
+                  'assets/images/higashi.png',
+                  fit: BoxFit.cover,
+                  height: 44,
+                  width: 44,
+                )
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
 
   Widget _buildNavIcon(IconData iconData) {
     return Container(
@@ -391,7 +381,7 @@ class DuringEventHome extends StatelessWidget {
           ),
         ],
       ),
-      padding: const EdgeInsets.all(0), // Menor padding para imagem maior
+      padding: const EdgeInsets.all(0),
       child: FittedBox(
         fit: BoxFit.contain,
         child: Image.asset('assets/images/logo_abrac.png'),

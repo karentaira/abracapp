@@ -6,6 +6,39 @@ import time
 from PIL import Image
 import datetime
 import os
+import firebase_admin
+from firebase_admin import credentials, firestore
+
+# Inicialização do Firebase Admin
+cred = credentials.Certificate('abrac-da433-firebase-adminsdk-fbsvc-64de757399.json')
+firebase_admin.initialize_app(cred)
+db_firestore = firestore.client()
+
+
+def buscar_dados_cantor(valid_num):
+    """Busca os dados do cantor no Firestore baseado no número detectado"""
+    try:
+        doc_ref = db_firestore.collection('cantores').document(valid_num)
+        doc = doc_ref.get()
+        
+        if doc.exists:
+            dados = doc.to_dict()
+            print(f"Cantor(a) nº {valid_num}")
+            print(f"Nome: {dados.get('nome', 'Sem dados')}")
+            print(f"Música: {dados.get('musica', 'Sem dados')}")
+            print(f"Regional: {dados.get('regional', 'Sem dados')}")
+            print(f"Categoria: {dados.get('categoria', 'Sem dados')}")
+            print("-" * 50)
+            
+            # Retorna os dados para possível uso adicional
+            return dados
+        else:
+            print(f"❌ Nenhum dado encontrado para o número {valid_num}")
+            return None
+    except Exception as e:
+        print(f"⚠️ Erro ao buscar dados do Firestore: {e}")
+        return None
+
 
 def preprocess_image(img):
     """Pré-processamento suave para melhorar a detecção de números digitais"""
@@ -15,8 +48,9 @@ def preprocess_image(img):
     
     return gray
 
+
 def validate_number(current_num, last_num, max_variation=5):
-    # validates the actual numer based on the last detected number "
+    # validates the actual numer based on the last detected number
     
     # if there is not a previous number, we accept the actual
     if not last_num:
@@ -41,6 +75,7 @@ def validate_number(current_num, last_num, max_variation=5):
     except ValueError:
         # in case an error ocurs during convertion, keep the last read number
         return last_num, False
+
 
 def extract_num(url_youtube, x, y, width, height, interval=10, playback_speed=2.0, max_variation=5):
     try:
@@ -154,6 +189,9 @@ def extract_num(url_youtube, x, y, width, height, interval=10, playback_speed=2.
                         print(f"[{time_str}] Número detectado: {valid_num}")
                         with open(log_filename, "a") as log_file:
                             log_file.write(f"{time_str} | {valid_num} | Número válido\n")
+                        
+                        # INTEGRAÇÃO: Busca os dados do cantor no Firestore quando um novo número é detectado
+                        buscar_dados_cantor(valid_num)
                         
                     else:
                         # Mesmo número que antes
